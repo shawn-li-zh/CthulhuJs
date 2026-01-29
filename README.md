@@ -36,16 +36,16 @@ CthulhuJs 提供了全方位的浏览器环境模拟与指纹混淆能力，涵�
 *   **Date & Timezone**: 伪造系统时区偏移量及 `Date` 对象行为，使其与目标地理位置一致。
 
 ### 🤖 行为模拟与自动化对抗 (Behavior & Automation)
-*   **Human Like (拟人化)**:
-  *   **Event Trust**: 修复自动化脚本触发事件的 `isTrusted` 属性。
-  *   **WebDriver Hiding**: 移除或伪造 `navigator.webdriver` 属性。
-  *   **Visibility**: 模拟正常的页面可见性状态 (Page Visibility API)。
-*   **Driver Evasion (驱动隐藏)** ⚠️ *Experimental*:
-  *   尝试隐藏 Selenium/Puppeteer/Playwright 留下的底层驱动特征（如 CDC_ 变量）。
-  *   *注：此功能尚不成熟，可能导致部分环境不稳定，建议慎用。*
-*   **Feature Alignment (版本特征对齐)** ⚠️ *Experimental*:
-  *   尝试根据 UserAgent 的版本自动调整浏览器支持的 API 特征（Blink/Gecko 特性差异）。
-  *   *注：建议开启 `Safe Mode` (安全模式) 时忽略此功能，以免产生逻辑冲突。*
+- **Human Like (拟人化)**:
+  - **Event Trust**: 修复自动化脚本触发事件的 `isTrusted` 属性。
+  - **WebDriver Hiding**: 移除或伪造 `navigator.webdriver` 属性。
+  - **Visibility**: 模拟正常的页面可见性状态 (Page Visibility API)。
+- **Driver Evasion (驱动隐藏)** ⚠️ *Experimental*:
+  - 尝试隐藏 Selenium/Puppeteer/Playwright 留下的底层驱动特征（如 CDC_ 变量）。
+  - *注：此功能尚不成熟，可能导致部分环境不稳定，建议慎用。*
+- **Feature Alignment (版本特征对齐)** ⚠️ *Experimental*:
+  - 尝试根据 UserAgent 的版本自动调整浏览器支持的 API 特征（Blink/Gecko 特性差异）。
+  - *注：建议开启 `Safe Mode` (安全模式) 时忽略此功能，以免产生逻辑冲突。*
 
 ## 🛠 开发与编译
 
