@@ -3,6 +3,7 @@
 
 **CthulhuJs** 是一个强大的浏览器指纹混淆与伪装框架。它通过 Hook 浏览器底层 API，对各类硬件和软件指纹进行定制化修改或随机化处理，旨在保护用户隐私、绕过反爬虫检测或用于自动化测试环境。
 
+### 📦 插件地址
 [![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-Install_Extension-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chromewebstore.google.com/detail/CthulhuJs%20%28Anti-Fingerprint%29/pmcpffnpjncfplinfnjebjoonbncnjfl?utm_source=ext_app_menu)
 
 ## ✨ 核心特性 (Features)
