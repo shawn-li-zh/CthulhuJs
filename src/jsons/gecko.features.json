@@ -1,0 +1,595 @@
+{
+  "js": {
+    "71": [
+      "Promise.allSettled"
+    ],
+    "74": [
+      "!Array.toSource",
+      "!Boolean.toSource",
+      "!Date.toSource",
+      "!Error.toSource",
+      "!Function.toSource",
+      "!Intl.toSource",
+      "!JSON.toSource",
+      "!Math.toSource",
+      "!Number.toSource",
+      "!Object.toSource",
+      "!RegExp.toSource",
+      "!String.toSource",
+      "!WebAssembly.toSource"
+    ],
+    "77": [
+      "String.replaceAll"
+    ],
+    "78": [
+      "Atomics.add",
+      "Atomics.and",
+      "Atomics.compareExchange",
+      "Atomics.exchange",
+      "Atomics.isLockFree",
+      "Atomics.load",
+      "Atomics.notify",
+      "Atomics.or",
+      "Atomics.store",
+      "Atomics.sub",
+      "Atomics.wait",
+      "Atomics.wake",
+      "Atomics.xor",
+      "Document.replaceChildren",
+      "Element.replaceChildren",
+      "Intl.ListFormat",
+      "RegExp.dotAll"
+    ],
+    "85": [
+      "!Document.onshow",
+      "Promise.any"
+    ],
+    "86": [
+      "Intl.DisplayNames"
+    ],
+    "87": [
+      "Document.onbeforeinput"
+    ],
+    "92": [
+      "Object.hasOwn"
+    ],
+    "100": [
+      "WebAssembly.Tag",
+      "WebAssembly.Exception"
+    ],
+    "125": [
+      "Intl.Segmenter",
+      "Document.onbeforetoggle",
+      "Document.oncontextlost",
+      "Document.oncontextrestored",
+      "Element.ariaBrailleLabel",
+      "Element.ariaBrailleRoleDescription"
+    ],
+    "126": [
+      "Element.currentCSSZoom"
+    ],
+    "127": [
+      "Set.union",
+      "Set.difference",
+      "Set.intersection",
+      "Set.symmetricDifference",
+      "Set.isSubsetOf",
+      "Set.isSupersetOf",
+      "Set.isDisjointFrom"
+    ],
+    "128": [
+      "Element.getHTML"
+    ],
+    "129": [
+      "Math.f16round"
+    ],
+    "130": [
+      "Document.oncontentvisibilityautostatechange"
+    ],
+    "134": [
+      "RegExp.escape",
+      "Promise.try"
+    ],
+    "135": [
+      "JSON.isRawJSON",
+      "JSON.rawJSON"
+    ],
+    "136": [
+      "Intl.DurationFormat",
+      "Element.ariaActiveDescendantElement",
+      "Element.ariaControlsElements",
+      "Element.ariaDescribedByElements",
+      "Element.ariaDetailsElements",
+      "Element.ariaErrorMessageElements",
+      "Element.ariaFlowToElements",
+      "Element.ariaLabelledByElements",
+      "Element.ariaOwnsElements"
+    ],
+    "137": [
+      "Math.sumPrecise",
+      "Atomics.pause"
+    ],
+    "138": [
+      "Error.isError",
+      "Error.captureStackTrace"
+    ],
+    "72-73": [
+      "Document.onformdata",
+      "Element.part"
+    ],
+    "75-76": [
+      "Document.getAnimations",
+      "Document.timeline",
+      "Element.getAnimations",
+      "Intl.Locale"
+    ],
+    "79-84": [
+      "Promise.any"
+    ],
+    "88-89": [
+      "RegExp.hasIndices"
+    ],
+    "90-91": [
+      "Array.at",
+      "String.at"
+    ],
+    "93-99": [
+      "Intl.supportedValuesOf",
+      "Document.onsecuritypolicyviolation",
+      "Document.onslotchange"
+    ],
+    "101-103": [
+      "Document.adoptedStyleSheets"
+    ],
+    "104-108": [
+      "Array.findLast",
+      "Array.findLastIndex"
+    ],
+    "109-114": [
+      "Document.onscrollend"
+    ],
+    "115-117": [
+      "RegExp.unicodeSets",
+      "Array.fromAsync",
+      "Array.toReversed",
+      "Array.toSorted",
+      "Array.toSpliced",
+      "Array.with",
+      "Document.oncancel"
+    ],
+    "118-120": [
+      "Object.groupBy",
+      "String.isWellFormed",
+      "String.toWellFormed",
+      "Element.role",
+      "Element.ariaAtomic",
+      "Element.ariaAutoComplete",
+      "Element.ariaBusy",
+      "Element.ariaChecked",
+      "Element.ariaColCount",
+      "Element.ariaColIndex",
+      "Element.ariaColIndexText",
+      "Element.ariaColSpan",
+      "Element.ariaCurrent",
+      "Element.ariaDescription",
+      "Element.ariaDisabled",
+      "Element.ariaExpanded",
+      "Element.ariaHasPopup",
+      "Element.ariaHidden",
+      "Element.ariaInvalid",
+      "Element.ariaKeyShortcuts",
+      "Element.ariaLabel",
+      "Element.ariaLevel",
+      "Element.ariaLive",
+      "Element.ariaModal",
+      "Element.ariaMultiLine",
+      "Element.ariaMultiSelectable",
+      "Element.ariaOrientation",
+      "Element.ariaPlaceholder",
+      "Element.ariaPosInSet",
+      "Element.ariaPressed",
+      "Element.ariaReadOnly",
+      "Element.ariaRelevant",
+      "Element.ariaRequired",
+      "Element.ariaRoleDescription",
+      "Element.ariaRowCount",
+      "Element.ariaRowIndex",
+      "Element.ariaRowIndexText",
+      "Element.ariaRowSpan",
+      "Element.ariaSelected",
+      "Element.ariaSetSize",
+      "Element.ariaSort",
+      "Element.ariaValueMax",
+      "Element.ariaValueMin",
+      "Element.ariaValueNow",
+      "Element.ariaValueText"
+    ],
+    "121-122": [
+      "Promise.withResolvers",
+      "Map.groupBy"
+    ],
+    "123-124": [
+      "Document.parseHTMLUnsafe",
+      "Element.setHTMLUnsafe"
+    ],
+    "131-133": [
+      "WebAssembly.JSTag",
+      "Document.fragmentDirective"
+    ]
+  },
+  "css": {
+    "71": [
+      "-moz-column-span"
+    ],
+    "72": [
+      "offset",
+      "offset-anchor",
+      "offset-distance",
+      "offset-path",
+      "offset-rotate",
+      "rotate",
+      "scale",
+      "translate"
+    ],
+    "73": [
+      "overscroll-behavior-block",
+      "overscroll-behavior-inline"
+    ],
+    "91": [
+      "tab-size"
+    ],
+    "96": [
+      "color-scheme"
+    ],
+    "97": [
+      "print-color-adjust",
+      "scrollbar-gutter",
+      "d"
+    ],
+    "102": [
+      "overflow-clip-margin"
+    ],
+    "109": [
+      "-webkit-clip-path"
+    ],
+    "110": [
+      "container-type",
+      "container-name",
+      "page",
+      "container"
+    ],
+    "111": [
+      "font-synthesis-small-caps",
+      "font-synthesis-style",
+      "font-synthesis-weight"
+    ],
+    "112": [
+      "font-synthesis-small-caps",
+      "!-moz-image-region"
+    ],
+    "121": [
+      "text-wrap"
+    ],
+    "122": [
+      "offset-position"
+    ],
+    "123": [
+      "!MozUserFocus",
+      "!-moz-user-focus"
+    ],
+    "124": [
+      "textWrapMode",
+      "text-wrap-mode",
+      "textWrapStyle",
+      "text-wrap-style",
+      "whiteSpaceCollapse",
+      "white-space-collapse"
+    ],
+    "125": [
+      "contentVisibility",
+      "content-visibility"
+    ],
+    "132": [
+      "!MozUserModify",
+      "!-moz-user-modify"
+    ],
+    "74-79": [
+      "!-moz-stack-sizing",
+      "text-underline-position"
+    ],
+    "80-88": [
+      "appearance"
+    ],
+    "89-90": [
+      "!-moz-outline-radius",
+      "!-moz-outline-radius-bottomleft",
+      "!-moz-outline-radius-bottomright",
+      "!-moz-outline-radius-topleft",
+      "!-moz-outline-radius-topright",
+      "aspect-ratio"
+    ],
+    "92-95": [
+      "accent-color"
+    ],
+    "98-101": [
+      "hyphenate-character"
+    ],
+    "103-106": [
+      "scroll-snap-stop"
+    ],
+    "107-108": [
+      "backdrop-filter",
+      "font-palette",
+      "contain-intrinsic-block-size",
+      "contain-intrinsic-height",
+      "contain-intrinsic-inline-size",
+      "contain-intrinsic-width",
+      "contain-intrinsic-size"
+    ],
+    "113-114": [
+      "forced-color-adjust",
+      "-webkit-text-security"
+    ],
+    "115-117": [
+      "baseline-source",
+      "math-depth",
+      "math-style",
+      "animation-composition"
+    ],
+    "118-120": [
+      "font-synthesis-position"
+    ],
+    "126-128": [
+      "zoom",
+      "!MozPerspective",
+      "!-moz-perspective",
+      "!MozPerspectiveOrigin",
+      "!-moz-perspective-origin",
+      "!MozBackfaceVisibility",
+      "!-moz-backface-visibility",
+      "!MozTransformStyle",
+      "!-moz-transform-style",
+      "!MozTransitionDuration",
+      "!-moz-transition-duration",
+      "!MozTransitionTimingFunction",
+      "!-moz-transition-timing-function",
+      "!MozTransitionProperty",
+      "!-moz-transition-property",
+      "!MozTransitionDelay",
+      "!-moz-transition-delay",
+      "!MozTransition",
+      "!-moz-transition"
+    ],
+    "129-131": [
+      "WebkitFontFeatureSettings",
+      "-webkit-font-feature-settings",
+      "webkitFontFeatureSettings",
+      "transitionBehavior",
+      "transition-behavior"
+    ],
+    "133-134": [
+      "MozPerspective",
+      "-moz-perspective",
+      "MozPerspectiveOrigin",
+      "-moz-perspective-origin",
+      "MozBackfaceVisibility",
+      "-moz-backface-visibility",
+      "MozTransformStyle",
+      "-moz-transform-style"
+    ],
+    "135-136": [
+      "!MozUserInput",
+      "!-moz-user-input"
+    ],
+    "137-138": [
+      "hyphenateLimitChars",
+      "hyphenate-limit-chars"
+    ]
+  },
+  "window": {
+    "71": [
+      "MathMLElement",
+      "!SVGZoomAndPan"
+    ],
+    "74": [
+      "FormDataEvent",
+      "!uneval"
+    ],
+    "75": [
+      "AnimationTimeline",
+      "CSSAnimation",
+      "CSSTransition",
+      "DocumentTimeline",
+      "SubmitEvent"
+    ],
+    "78": [
+      "Atomics"
+    ],
+    "82": [
+      "MediaMetadata",
+      "MediaSession",
+      "Sanitizer"
+    ],
+    "83": [
+      "MediaMetadata",
+      "MediaSession",
+      "!Sanitizer"
+    ],
+    "84": [
+      "PerformancePaintTiming"
+    ],
+    "87": [
+      "onbeforeinput"
+    ],
+    "88": [
+      "onbeforeinput",
+      "!VisualViewport"
+    ],
+    "96": [
+      "Lock",
+      "LockManager"
+    ],
+    "97": [
+      "CSSLayerBlockRule",
+      "CSSLayerStatementRule"
+    ],
+    "98": [
+      "HTMLDialogElement"
+    ],
+    "99": [
+      "NavigationPreloadManager"
+    ],
+    "110": [
+      "CSSContainerRule"
+    ],
+    "111": [
+      "FileSystemFileHandle",
+      "FileSystemDirectoryHandle"
+    ],
+    "112": [
+      "FileSystemFileHandle",
+      "!U2F"
+    ],
+    "121": [
+      "UserActivation",
+      "ToggleEvent",
+      "!sizeToContent"
+    ],
+    "124": [
+      "!DOMRequest"
+    ],
+    "125": [
+      "ContentVisibilityAutoStateChangeEvent",
+      "RTCIceTransport",
+      "onbeforetoggle",
+      "oncontextlost",
+      "oncontextrestored"
+    ],
+    "126": [
+      "WakeLockSentinel",
+      "WakeLock",
+      "CustomStateSet"
+    ],
+    "127": [
+      "ClipboardItem"
+    ],
+    "128": [
+      "CSSPropertyRule"
+    ],
+    "129": [
+      "!MediaCapabilitiesInfo",
+      "Float16Array",
+      "CSSStartingStyleRule",
+      "TextEvent",
+      "CSSPageDescriptors"
+    ],
+    "130": [
+      "AudioDecoder",
+      "EncodedVideoChunk",
+      "AudioData",
+      "VideoDecoder",
+      "VideoFrame",
+      "AudioEncoder",
+      "VideoColorSpace",
+      "VideoEncoder",
+      "EncodedAudioChunk",
+      "oncontentvisibilityautostatechange"
+    ],
+    "131": [
+      "Iterator",
+      "FragmentDirective"
+    ],
+    "132": [
+      "CSSNestedDeclarations"
+    ],
+    "136": [
+      "SVGDiscardElement"
+    ],
+    "137": [
+      "CookieChangeEvent",
+      "CookieStore",
+      "cookieStore"
+    ],
+    "138": [
+      "NavigatorLogin",
+      "originAgentCluster",
+      "!CookieChangeEvent",
+      "!CookieStore",
+      "!cookieStore"
+    ],
+    "72-73": [
+      "!BatteryManager",
+      "FormDataEvent",
+      "Geolocation",
+      "GeolocationCoordinates",
+      "GeolocationPosition",
+      "GeolocationPositionError",
+      "!mozPaintCount"
+    ],
+    "76-77": [
+      "AudioParamMap",
+      "AudioWorklet",
+      "AudioWorkletNode",
+      "Worklet"
+    ],
+    "79-81": [
+      "AggregateError",
+      "FinalizationRegistry"
+    ],
+    "85-86": [
+      "PerformancePaintTiming",
+      "!HTMLMenuItemElement",
+      "!onshow"
+    ],
+    "89-92": [
+      "!ondevicelight",
+      "!ondeviceproximity",
+      "!onuserproximity"
+    ],
+    "93-95": [
+      "ElementInternals"
+    ],
+    "100-104": [
+      "WritableStream"
+    ],
+    "105-106": [
+      "TextDecoderStream",
+      "OffscreenCanvasRenderingContext2D",
+      "OffscreenCanvas",
+      "TextEncoderStream"
+    ],
+    "107-109": [
+      "CSSFontPaletteValuesRule"
+    ],
+    "113-114": [
+      "CompressionStream",
+      "DecompressionStream",
+      "WebTransportSendStream",
+      "WebTransportDatagramDuplexStream",
+      "WebTransportError",
+      "WebTransportReceiveStream",
+      "WebTransport",
+      "WebTransportBidirectionalStream",
+      "!mozRTCPeerConnection",
+      "!mozRTCSessionDescription",
+      "!mozRTCIceCandidate"
+    ],
+    "115-120": [
+      "RTCEncodedAudioFrame",
+      "RTCSctpTransport",
+      "RTCEncodedVideoFrame",
+      "RTCRtpScriptTransform",
+      "oncancel",
+      "!OfflineResourceList",
+      "!applicationCache"
+    ],
+    "122-123": [
+      "LargestContentfulPaint"
+    ],
+    "133-135": [
+      "ImageDecoder",
+      "ImageTrackList",
+      "ImageTrack"
+    ]
+  }
+}
