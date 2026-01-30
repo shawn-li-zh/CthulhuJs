@@ -173,7 +173,7 @@ export interface Browser {
     //控制cheater功能启用
     enables: { [k in Functions]: boolean },
     //屏幕信息 -1表示忽略
-    "screen": {
+    screen: {
         noise: number | -1,
         pixelDepth: number | -1,
         colorDepth: number | -1,
