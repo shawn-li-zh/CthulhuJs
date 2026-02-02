@@ -104,28 +104,22 @@ await page.evaluateOnNewDocument(randomTestScript);
 // 伪代码流程
 const generatorCode = fs.readFileSync('./public/build/generator.js', 'utf8');
 const windowCode = fs.readFileSync('./public/build/window.js', 'utf8');
-
-await page.evaluateOnNewDocument((gen, win) => {
-    // 1. 执行生成器代码
-    eval(gen); 
-    
-    // 2. 生成指纹配置 (支持指定 UA, seed, 安全模式等)
+// 1.注入生成器代码
+await page.evaluateOnNewDocument(generatorCode)
+// 2.注入 window.js
+await page.evaluateOnNewDocument(windowCode);
+await page.evaluateOnNewDocument(() => {
+    // 3. 生成指纹配置 (支持指定 UA, seed, 安全模式等)
     const config = self.BROWSER_GENERATOR({
         userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)...",
         seed: 123456, // 相同的 seed 生成相同的指纹
         safeMode: true
     });
-
-    // 3. 执行核心引擎代码
-    eval(win);
-
     // 4. 将配置传递给全局变量
     self.SCOPE_BROWSER = config;
-
     // 5. 启动指纹干扰
     self.SCOPE_CHEATER.run();
-
-}, generatorCode, windowCode);
+});
 ```
 
 ### 方式三：完全自定义参数
@@ -134,12 +128,12 @@ await page.evaluateOnNewDocument((gen, win) => {
 ```javascript
 const windowCode = fs.readFileSync('./public/build/window.js', 'utf8');
 const myFingerprintData = { ... }; // 符合 generator 输出结构的 JSON 对象
-
-await page.evaluateOnNewDocument((code, data) => {
-    eval(code); // 注入 window.js
+// 注入 window.js
+await page.evaluateOnNewDocument(windowCode);
+await page.evaluateOnNewDocument((data) => {
     self.SCOPE_BROWSER = data; // 赋值
     self.SCOPE_CHEATER.run(); // 运行
-}, windowCode, myFingerprintData);
+}, myFingerprintData);
 ```
 
 ## 📂 项目结构

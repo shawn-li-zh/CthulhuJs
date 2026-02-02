@@ -5,8 +5,8 @@
   "description": "纯js修改网页环境指纹信息",
   "license": "MIT",
   "scripts": {
-    "script dev": "webpack --mode development --config ./webpack.congfig.js",
-    "script build": "webpack --mode production --config ./webpack.congfig.js"
+    "script dev": "webpack --mode development --config ./webpack.config.js",
+    "script build": "webpack --mode production --config ./webpack.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
