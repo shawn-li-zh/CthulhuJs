@@ -55,17 +55,17 @@ export function initAttach(scope) {
             delete debugs[key]
         },
         isDebugger: (target) => {
-            // let key = "DEBUG:" + target;
-            // if (!scope.sessionStorage) {
-            //     return false
-            // }
-            // let item = GET_ITEM.apply(scope.sessionStorage, [key]);
-            // if (!item) return false
-            // let times = item/1 || 0;
-            // if (times > 0) {
-            //     SET_ITEM.apply(scope.sessionStorage, [key, (times - 1) + ""])
-            //     return true;
-            // }
+            let key = "DEBUG:" + target;
+            if (!scope.sessionStorage) {
+                return false
+            }
+            let item = GET_ITEM.apply(scope.sessionStorage, [key]);
+            if (!item) return false
+            let times = item/1 || 0;
+            if (times > 0) {
+                SET_ITEM.apply(scope.sessionStorage, [key, (times - 1) + ""])
+                return true;
+            }
             return false
         }
     };
@@ -100,9 +100,6 @@ function proxyFn(debugKey, log, fn, args) {
         functionCall(LOG,console,[log, args])
     }
     if (SELF[specialKeys.attach].isDebugger(debugKey)) EVAL("debugger")
-    // if (new Date().getTime()>=new Date(atob('MjAyNS0wOC0wNw==')).getTime()){
-    //     return ''
-    // }
     try {
         return fn()
     } catch (e) {
@@ -271,25 +268,6 @@ export function functionCall(target, self, args) {
     return rawCall.call(target, ...[self, ...args])
 }
 
-// function proxySetProto(api) {
-//     Object.defineProperty(api, '__proto__', {
-//         set(proto) {
-//             if (typeof proto !== 'function' && typeof proto !== 'object') {
-//                 return api.__proto__ = proto;
-//             }
-//             if (this[specialKeys.proxyId]) {
-//                 if (this[specialKeys.proxyId] === proto[specialKeys.proxyId]) {
-//                     let typeError = new TypeError("Cyclic __proto__ value");
-//                     typeError.stack = "TypeError: Cyclic __proto__ value\n" +
-//                         "    at  set __proto__ (<anonymous>)\n" +
-//                         "    at <anonymous>:1:22";
-//                     throw typeError;
-//                 }
-//             }
-//             return api.__proto__ = proto;
-//         }
-//     })
-// }
 /**
  *
  * @param {any} target

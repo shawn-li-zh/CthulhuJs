@@ -1,14 +1,3 @@
-export type Type = "string" | "number" | "boolean" | "undefined" | 'json'
-
-export interface Proto {
-    name: string,
-    properties: { key: string, value: any, type: Type }[]
-}
-
-export interface Var {
-    path: string,
-    value: any
-}
 
 
 interface IBrowser {
@@ -106,42 +95,75 @@ interface UaInfo {
     os: IOS;
     cpu: ICPU;
 }
+export type Type = "string" | "number" | "boolean" | "undefined" | 'json'
+
+export interface Proto {
+    name: string,
+    properties: { key: string, value: any, type: Type }[]
+}
+
+export interface Var {
+    path: string,
+    value: any
+}
 
 type Functions = 'audio' | 'canvas' | 'webgl' | 'fonts' | 'webgpu' |
     'clientRect' | 'voice' | 'plugin' | 'native' | 'webrtc' | "date" |
     'screen' | 'location' | 'navigator' | 'feature' | 'media' | 'worker' | 'iframe'
 
 export interface Browser {
-    id: string
+    //环境名称
     name?: string
-    isTemp?: boolean
-    //安全模式 不修改浏览版本和系统版本
-    safeMode?: boolean
-    webglSafeMode?: boolean
-    disableWorker?: boolean
-    antiDebugger?: boolean
-    functionTrace?: boolean
-    humanLike?: boolean
-    dev?: boolean
+    //随机种子
     seed?: number
+    //安全模式 开启后不修改浏览版本和系统版本
+    safeMode?: boolean
+    //开启后进微调webgl版本信息
+    webglSafeMode?: boolean
+    //开启后阻止worker通信
+    disableWorker?: boolean
+    //阻止无限调试(需搭配driverCheater)
+    antiDebugger?: boolean
+    //函数跟踪
+    functionTrace?: boolean
+    //环境拟人
+    humanLike?: boolean
+    //ua
     userAgent?: string,
+    //ua解析结果
+    uaInfo?: UaInfo,
+    //自定义原型链的返回值
     customProtos: Proto[],
+    //自定义对象的值
     customVars: Var[],
+    //伪装的webrtc ip地址
     webrtc?: string
+    //地理坐标
     location?: {
         lng?: number,
         lat?: number,
     },
+    //时区code
     timezone?: string
+    //语言code
     language?: string
+    //硬件/环境指纹干扰因子
     factors: {
+        //音频
         audio: number
+        //画布
         canvas: number
+        //字体
         fonts: number
+        //插件
         plugins: number
+        //webgl
         webgl: number
+        //webgpu
         webgpu: number
+        //声音
         voice: number
+        //矩形
         clientRect: number
     },
     //webgl 参数信息
@@ -150,15 +172,17 @@ export interface Browser {
     },
     //控制cheater功能启用
     enables: { [k in Functions]: boolean },
-    //屏幕信息
-    "screen": {
+    //屏幕信息 -1表示忽略
+    screen: {
         noise: number | -1,
-        "pixelDepth": number | -1,
-        "colorDepth": number | -1,
-        "maxTouchPoints": number | -1,
-        "dpr": number | -1
+        pixelDepth: number | -1,
+        colorDepth: number | -1,
+        maxTouchPoints: number | -1,
+        dpr: number | -1
     },
-    memoryCapacity?: 0.25 | 0.5 | 1 | 2 | 4 | 8
-    processors?: 1 | 2 | 4 | 8 | 16 | 32 | 64
-    uaInfo?: UaInfo
+    //内存大小
+    memoryCapacity?: 0.25 | 0.5 | 1 | 2 | 4 | 8,
+    //处理器内核数量
+    processors?: 1 | 2 | 4 | 8 | 16 | 32 | 64,
+  
 }
