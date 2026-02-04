@@ -1,7 +1,7 @@
 
 # CthulhuJs 🐙
 
-[简体中文](README.zh-CN.md) | English
+[简体中文](README.zh.md) | English
 
 **CthulhuJs** is a powerful framework for browser fingerprint obfuscation and masquerading. By hooking low-level browser APIs, it allows for customized modification or randomization of various hardware and software fingerprints. It is designed to protect user privacy, bypass anti-bot detections, or be used in automated testing environments.
 
