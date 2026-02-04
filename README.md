@@ -1,181 +1,186 @@
 
 # CthulhuJs 🐙
 
-**CthulhuJs** 是一个强大的浏览器指纹混淆与伪装框架。它通过 Hook 浏览器底层 API，对各类硬件和软件指纹进行定制化修改或随机化处理，旨在保护用户隐私、绕过反爬虫检测或用于自动化测试环境。
+[简体中文](README.zh-CN.md) | English
 
-### 📦 插件地址
+**CthulhuJs** is a powerful framework for browser fingerprint obfuscation and masquerading. By hooking low-level browser APIs, it allows for customized modification or randomization of various hardware and software fingerprints. It is designed to protect user privacy, bypass anti-bot detections, or be used in automated testing environments.
+
+### 📦 Extension Link
 [![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-Install_Extension-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chromewebstore.google.com/detail/CthulhuJs%20%28Anti-Fingerprint%29/pmcpffnpjncfplinfnjebjoonbncnjfl?utm_source=ext_app_menu)
 
-## ✨ 核心特性 (Features)
+## ✨ Core Features
 
-CthulhuJs 提供了全方位的浏览器环境模拟与指纹混淆能力，涵盖了从底层渲染到上层交互的各个维度。
+CthulhuJs provides comprehensive browser environment simulation and fingerprint obfuscation, covering dimensions from low-level rendering to high-level interaction.
 
-### 🎨 图形与渲染 (Graphics & Rendering)
-*   **Canvas Fingerprint**: 动态干扰 `HTMLCanvasElement` 和 `CanvasRenderingContext2D` 的导出数据（toDataURL/getImageData），并在视觉上保持不可见差异。
-*   **WebGL & WebGPU**: 混淆 GPU 渲染器信息（Vendor/Renderer）、参数及 WebGL 上下文，支持最新的 WebGPU 指纹保护。
-*   **DOM Rects (ClientRects)**: 对 `getBoundingClientRect` 和 `getClientRects` 进行微小的数值扰动，对抗几何测量指纹。
-*   **Fonts Metrics**: 混淆系统字体列表及字体渲染测量的宽度/高度，防止基于字体枚举的追踪。
-*   **Screen & Window**: 自定义屏幕分辨率、色深 (Color Depth)、设备像素比 (DPR) 及窗口尺寸。
-*   **CSS Media**: 伪造 `matchMedia` 查询结果（如深色模式、高对比度等）。
+### 🎨 Graphics & Rendering
+*   **Canvas Fingerprinting**: Dynamically interferes with `HTMLCanvasElement` and `CanvasRenderingContext2D` data (toDataURL/getImageData) while maintaining visual consistency.
+*   **WebGL & WebGPU**: Obfuscates GPU renderer info (Vendor/Renderer), parameters, and WebGL context. Supports the latest WebGPU fingerprint protection.
+*   **DOM Rects (ClientRects)**: Introduces micro-perturbations to `getBoundingClientRect` and `getClientRects` to counter geometric measurement fingerprinting.
+*   **Font Metrics**: Obfuscates the system font list and measurement results (width/height) of font rendering to prevent tracking via font enumeration.
+*   **Screen & Window**: Customizes screen resolution, color depth, Device Pixel Ratio (DPR), and window dimensions.
+*   **CSS Media**: Spoofs `matchMedia` query results (e.g., dark mode, high contrast).
 
-### 🔊 媒体与网络 (Media & Network)
-*   **Audio Context**: 干扰音频处理管道（DynamicsCompressor/Oscillator），修改音频指纹哈希。
-*   **WebRTC**: 拦截 WebRTC 连接，处理 IP 泄露问题，伪造或隐藏候选设备 (ICE Candidates)。
-*   **Voice/Speech**: 针对 `SpeechSynthesis` 和 `SpeechRecognition` API 的指纹进行处理。
+### 🔊 Media & Network
+*   **Audio Context**: Interferes with the audio processing pipeline (DynamicsCompressor/Oscillator) and modifies the audio fingerprint hash.
+*   **WebRTC**: Intercepts WebRTC connections to prevent IP leaks and spoofs or hides ICE Candidates.
+*   **Voice/Speech**: Handles fingerprints related to the `SpeechSynthesis` API.
 
-### 🛡️ 核心对抗与防护 (Evasion & Protection)
-*   **Native Masquerading (Native 伪装)**: **核心功能**。基于 Proxy 劫持，确保所有被 Hook 的函数具备和正常native函数相同的特征。
-*   **Object Trace & Hijack**: 对敏感对象进行访问拦截与跟踪，可以检测当对象触发某些条件时，进行拦截处理。
-*   **Iframe Injection**: 递归注入机制，自动识别并处理动态创建的 Iframe，确保子框架环境指纹与主框架一致。
-*   **Worker Interception**: 拦截并处理 `Web Worker` 之间的通讯，确保 Worker 线程内的指纹同步。
+### 🛡️ Evasion & Protection
+*   **Native Masquerading**: **Core Feature**. Based on Proxy hijacking, it ensures that all hooked functions possess the same characteristics as native functions.
+*   **Object Trace & Hijack**: Intercepts and tracks access to sensitive objects, allowing for custom logic when specific conditions are triggered.
+*   **Iframe Injection**: Recursive injection mechanism that automatically identifies and handles dynamically created Iframes, ensuring fingerprint consistency between subframes and the main frame.
+*   **Worker Interception**: Intercepts and handles communication within `Web Workers` to ensure fingerprint synchronization in worker threads.
 
-### 🆔 身份与环境 (Identity & Environment)
-*   **Navigator**: 深度定制 UserAgent、Platform、HardwareConcurrency、DeviceMemory、Languages 等基础属性。
-*   **Plugins & MimeTypes**: 伪造 `navigator.plugins` 和 `navigator.mimeTypes` 列表，支持自定义插件数据。
-*   **Geolocation**: 模拟地理位置 API，支持自定义经纬度坐标。
-*   **Date & Timezone**: 伪造系统时区偏移量及 `Date` 对象行为，使其与目标地理位置一致。
+### 🆔 Identity & Environment
+*   **Navigator**: Deeply customizes `UserAgent`, `Platform`, `HardwareConcurrency`, `DeviceMemory`, `Languages`, and other basic attributes.
+*   **Plugins & MimeTypes**: Spoofs `navigator.plugins` and `navigator.mimeTypes` with support for custom plugin data.
+*   **Geolocation**: Simulates Geolocation APIs with custom latitude and longitude coordinates.
+*   **Date & Timezone**: Spoofs system timezone offset and `Date` object behavior to align with the target geographic location.
 
-### 🤖 行为模拟与自动化对抗 (Behavior & Automation)
-- **Human Like (拟人化)**:
-  - **Event Trust**: 修复自动化脚本触发事件的 `isTrusted` 属性。
-  - **WebDriver Hiding**: 移除或伪造 `navigator.webdriver` 属性。
-  - **Visibility**: 模拟正常的页面可见性状态 (Page Visibility API)。
-- **Driver Evasion (驱动隐藏)** ⚠️ *Experimental*:
-  - 尝试隐藏 Selenium/Puppeteer/Playwright 留下的底层驱动特征（如 CDC_ 变量）。
-  - *注：此功能尚不成熟，可能导致部分环境不稳定，建议慎用。*
-- **Feature Alignment (版本特征对齐)** ⚠️ *Experimental*:
-  - 尝试根据 UserAgent 的版本自动调整浏览器支持的 API 特征（Blink/Gecko 特性差异）。
-  - *注：建议开启 `Safe Mode` (安全模式) 时忽略此功能，以免产生逻辑冲突。*
+### 🤖 Behavior & Automation Evasion
+- **Human-Like Behavior**:
+  - **Event Trust**: Fixes the `isTrusted` property for events triggered by automation scripts.
+  - **WebDriver Hiding**: Removes or spoofs the `navigator.webdriver` property.
+  - **Visibility**: Simulates normal page visibility states (Page Visibility API).
+- **Driver Evasion** ⚠️ *Experimental*:
+  - Attempts to hide low-level driver traces (e.g., `CDC_` variables) left by Selenium, Puppeteer, or Playwright.
+  - *Note: This feature is experimental and may cause instability in some environments.*
+- **Feature Alignment** ⚠️ *Experimental*:
+  - Automatically adjusts browser API features (Blink/Gecko differences) based on the UserAgent version.
+  - *Note: It is recommended to ignore this when `Safe Mode` is enabled to avoid logic conflicts.*
 
-## 🛠 开发与编译
+## 🛠 Development & Build
 
-### 环境要求
-* Node.js (推荐 v14+)
+### Requirements
+* Node.js (v14+ recommended)
 * npm
 
-### 安装依赖
+### Installation
 ```bash
 npm install
 ```
 
-### 编译构建
-项目提供了开发模式和生产模式的构建命令。编译后的文件将生成在 `public/dev` 或 `public/build` 目录下。
+### Build
+The project provides build commands for development and production. Compiled files will be generated in `public/dev` or `public/build`.
 
 ```bash
-# 开发模式 (生成未压缩代码，便于调试)
+# Development Mode (uncompressed code for debugging)
 npm run "script dev"
 
-# 生产模式 (生成压缩混淆代码)
+# Production Mode (compressed and obfuscated code)
 npm run "script build"
 ```
 
-### 编译产物说明
-| 文件名 | 描述 |
+### Build Artifacts
+| Filename | Description |
 | :--- | :--- |
-| `window.js` | **核心引擎**。提供 `SCOPE_CHEATER` 对象，负责接收配置并执行指纹注入。 |
-| `generator.js` | **配置生成器**。提供 `generateBrowser` 函数，用于根据 UserAgent 或 Seed 生成指纹配置对象。 |
-| `randomTest.js` | **全自动测试脚本**。集成了生成与注入逻辑，直接运行即可随机修改当前环境指纹。 |
+| `window.js` | **Core Engine**. Provides the `SCOPE_CHEATER` object responsible for receiving configuration and executing injection. |
+| `generator.js` | **Config Generator**. Provides the `generateBrowser` function to generate config objects based on UserAgent or Seed. |
+| `randomTest.js` | **Auto-test Script**. Integrates generation and injection logic for quick randomization of the current environment. |
 
-## 🚀 使用指南 / 注入方式
+## 🚀 Usage Guide / Injection Methods
 
-**⚠️ 核心原则：** 脚本必须在 **网页加载之前 (Document Start)** 执行。
-如果使用 Puppeteer/Playwright，请使用 `page.evaluateOnNewDocument`；如果使用 Chrome 扩展，请在 `content_script` 的 `run_at: document_start` 阶段注入。
+**⚠️ Core Principle:** Scripts must be executed **before the webpage loads (Document Start)**.
+If using Puppeteer/Playwright, use `page.evaluateOnNewDocument`. If using a Chrome Extension, inject at the `run_at: document_start` stage in `content_scripts`.
 
-### 方式一：快速随机指纹 (推荐测试用)
-直接将 `randomTest.js` 注入浏览器，脚本会自动生成随机指纹并应用。
+### Method 1: Quick Random Fingerprint (Recommended for Testing)
+Inject `randomTest.js` directly. The script will automatically generate and apply a random fingerprint.
 
 ```javascript
-// Puppeteer 示例
+// Puppeteer Example
 const fs = require('fs');
 const randomTestScript = fs.readFileSync('./public/build/randomTest.js', 'utf8');
 
 await page.evaluateOnNewDocument(randomTestScript);
 ```
 
-### 方式二：使用生成器定制指纹
-此方法允许你控制指纹的一致性（通过 Seed）或指定特定的 UserAgent。
+### Method 2: Customizing via Generator
+This method allows for consistency (via Seed) or specifying a particular UserAgent.
 
-1. **注入生成器** (`generator.js`)。
-2. **生成配置**：调用 `BROWSER_GENERATOR`。
-3. **注入引擎** (`window.js`)。
-4. **应用配置**：调用 `SCOPE_CHEATER.run()`。
+1. **Inject Generator** (`generator.js`).
+2. **Generate Config**: Call `BROWSER_GENERATOR`.
+3. **Inject Engine** (`window.js`).
+4. **Apply Config**: Call `SCOPE_CHEATER.run()`.
 
 ```javascript
-// 伪代码流程
+// Pseudocode Flow
 const generatorCode = fs.readFileSync('./public/build/generator.js', 'utf8');
 const windowCode = fs.readFileSync('./public/build/window.js', 'utf8');
-// 1.注入生成器代码
-await page.evaluateOnNewDocument(generatorCode)
-// 2.注入 window.js
+
+// 1. Inject generator code
+await page.evaluateOnNewDocument(generatorCode);
+// 2. Inject engine code
 await page.evaluateOnNewDocument(windowCode);
+
 await page.evaluateOnNewDocument(() => {
-    // 3. 生成指纹配置 (支持指定 UA, seed, 安全模式等)
+    // 3. Generate fingerprint config (supports UA, seed, safeMode, etc.)
     const config = self.BROWSER_GENERATOR({
         userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)...",
-        seed: 123456, // 相同的 seed 生成相同的指纹
+        seed: 123456, // Same seed generates the same fingerprint
         safeMode: true
     });
-    // 4. 将配置传递给全局变量
+    // 4. Pass config to global variable
     self.SCOPE_BROWSER = config;
-    // 5. 启动指纹干扰
+    // 5. Start obfuscation
     self.SCOPE_CHEATER.run();
 });
 ```
 
-### 方式三：完全自定义参数
-如果你已有现成的指纹库（Json 数据），可以跳过生成器，直接注入 `window.js` 并赋值。
+### Method 3: Fully Manual Parameters
+If you have your own fingerprint library (JSON data), you can skip the generator and inject `window.js` directly.
 
 ```javascript
 const windowCode = fs.readFileSync('./public/build/window.js', 'utf8');
-const myFingerprintData = { ... }; // 符合 generator 输出结构的 JSON 对象
-// 注入 window.js
+const myFingerprintData = { ... }; // JSON object matching the generator structure
+
 await page.evaluateOnNewDocument(windowCode);
 await page.evaluateOnNewDocument((data) => {
-    self.SCOPE_BROWSER = data; // 赋值
-    self.SCOPE_CHEATER.run(); // 运行
+    self.SCOPE_BROWSER = data; // Assign data
+    self.SCOPE_CHEATER.run(); // Run engine
 }, myFingerprintData);
 ```
 
-## 📂 项目结构
+## 📂 Project Structure
 
 ```text
 CthulhuJs/
 ├── src/
-│   ├── cheaters/          # 🎭 [核心] 各类指纹干扰模块
+│   ├── cheaters/          # 🎭 [Core] Obfuscation modules
 │   │   ├── audioCheater.js
 │   │   ├── canvasCheater.js
 │   │   ├── navigatorCheater.js
-│   │   └── ... (更多模块)
-│   ├── generate/            # 🎲 参数生成逻辑与指纹库
-│   │   ├── devices.json     #    - 真实设备 UserAgent 与屏幕数据数据库
-│   │   ├── webglInfos.json  #    - 真实 WebGL 渲染器/供应商数据数据库
-│   │   ├── types.js         #    - 类型定义
-│   │   └── index.js         #    - 生成器逻辑入口
-│   ├── jsons/               # 🗃️ 浏览器引擎特征库 (用于版本特征对齐)
+│   │   └── ... (more modules)
+│   ├── generate/            # 🎲 Generation logic & databases
+│   │   ├── devices.json     #    - Real device UA & screen database
+│   │   ├── webglInfos.json  #    - Real WebGL renderer/vendor database
+│   │   ├── types.js         #    - Type definitions
+│   │   └── index.js         #    - Generator entry
+│   ├── jsons/               # 🗃️ Browser engine feature libraries
 │   │   ├── blink.features.json
 │   │   └── gecko.features.json
-│   ├── kits/                # 🛠️ 通用工具箱
-│   │   ├── objects.js       #    - 对象操作工具
-│   │   ├── proxy.js         #    - 核心 Proxy 劫持与 Native 伪装逻辑
-│   │   └── utils.js         #    - 通用辅助函数
-│   ├── browserFill.js       # 🧩 浏览器环境参数补齐
-│   ├── const.js             # 📌 常量定义
-│   ├── generator.js         # ⚙️ [编译入口] 指纹配置生成器 (导出 generateBrowser)
-│   ├── randomTest.js        # 🧪 [编译入口] 随机指纹测试脚本 (开箱即用)
-│   ├── window.js            # 🚪 [编译入口] 主窗口注入脚本 (Window Scope)
-│   └── worker.js            # 👷 [编译入口] Worker 线程注入脚本 (Worker Scope)
-├── public/                  # 📦 (GitIgnored) 编译输出目录 (dev/build)
-├── webpack.config.js        # 🏗️ Webpack 构建配置
-├── babel.config.js          # 🧬 Babel 转译配置
-├── type.d.ts                # 📝 浏览器环境参数 TypeScript 类型声明
-└── package.json             # 📦 项目依赖与脚本配置
+│   ├── kits/                # 🛠️ Utilities
+│   │   ├── objects.js       #    - Object manipulation
+│   │   ├── proxy.js         #    - Core Proxy hijacking & Native Masquerading
+│   │   └── utils.js         #    - Helper functions
+│   ├── browserFill.js       # 🧩 Browser environment polyfills
+│   ├── const.js             # 📌 Constants
+│   ├── generator.js         # ⚙️ [Entry] Fingerprint generator
+│   ├── randomTest.js        # 🧪 [Entry] Random test script
+│   ├── window.js            # 🚪 [Entry] Main window injection (Window Scope)
+│   └── worker.js            # 👷 [Entry] Worker thread injection (Worker Scope)
+├── public/                  # 📦 (GitIgnored) Build output (dev/build)
+├── webpack.config.js        # 🏗️ Webpack configuration
+├── babel.config.js          # 🧬 Babel configuration
+├── type.d.ts                # 📝 TypeScript type definitions
+└── package.json             # 📦 Dependencies & scripts
 ```
-## ⚖️ 免责声明 (Disclaimer)
 
-本项目 (**CthulhuJs**) 仅供**安全研究、学术交流及防御性测试**使用。
-* 开发者不对任何因使用本项目而导致的法律后果或服务中断负责。
-* 请勿将本项目用于任何非法用途（如恶意攻击、欺诈、绕过合法访问控制等）。
-* 使用本项目即代表你同意遵守相关法律法规。
+## ⚖️ Disclaimer
+
+This project (**CthulhuJs**) is for **security research, academic exchange, and defensive testing** only.
+* The developer is not responsible for any legal consequences or service interruptions caused by the use of this project.
+* Do not use this project for any illegal purposes (e.g., malicious attacks, fraud, bypassing legitimate access controls).
+* By using this project, you agree to comply with all applicable laws and regulations.
 
 ## 📄 License
 
