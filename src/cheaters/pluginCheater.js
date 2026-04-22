@@ -5,16 +5,17 @@ import {specialKeys} from "../const";
 export function cheat(scope, browser) {
     const Plugin = scope.Plugin;
     if (!(browser.factors.plugins && Plugin)) return false
-    let rand = Utils.randomNum(browser.factors.plugins, 999999)
+    let rand=new Utils.Random(browser.factors.plugins)
+    let randNum = rand.int(0,999999)
     const randomStr = (target, self, args) => {
         let v = functionCall(target, self, args);//触发Illegal invocation
         let s = new String(v);//强制new
         s.valueOf = function valueOf() {
-            return v + ' ' + rand
+            return v + ' ' + randNum
         }
         s.valueOf[specialKeys.native] = 1
         s.toString = function toString() {
-            return v + ' ' + rand
+            return v + ' ' + randNum
         }
         s.toString[specialKeys.native] = 1
         return s

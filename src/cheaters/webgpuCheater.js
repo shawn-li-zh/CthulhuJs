@@ -10,7 +10,7 @@ export function cheat(scope, browser) {
     const GPUAdapterInfo = scope.GPUAdapterInfo;
     const GPUSupportedLimits = scope.GPUSupportedLimits;
     // const GPUDevice = scope.GPUDevice;
-
+    let rand = new Utils.Random(factor);
     if (GPUAdapterInfo && vendor) {
         //隐藏WebGPU信息 Google Inc. (NVIDIA) => nvidia
         proxyGetter(GPUAdapterInfo.prototype, "vendor", (target, self, args) => {
@@ -34,7 +34,7 @@ export function cheat(scope, browser) {
             proxyGetter(GPUSupportedLimits.prototype, key, (target, self, args) => {
                 let originValue = functionCall(target, self, args);
                 if (originValue <= 64) return originValue;
-                let number = Utils.randomInt(factor, 0, 10) * 2;
+                let number = rand.int(0, 10) * 2;
                 if (originValue % 2 === 0) {
                     return originValue - ((number / 2) | 0)
                 }

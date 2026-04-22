@@ -13,7 +13,7 @@ export function cheat(scope, browser) {
     const factor = browser.factors.audio
     if (!factor) return
     const safeMode = browser.safeMode || 0
-
+    let rand = new Utils.Random(factor);
     const AudioBuffer = scope.AudioBuffer;
     const AnalyserNode = scope.AnalyserNode;
 

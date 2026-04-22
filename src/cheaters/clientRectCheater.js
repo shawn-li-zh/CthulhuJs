@@ -7,6 +7,7 @@ import {specialKeys} from "../const";
 export function cheat(scope, browser) {
     const factor = browser.factors.clientRect
     if (!factor) return false;
+    let rand = new Utils.Random(factor);
     const Element = scope.Element;
     if (!Element) return false
     proxyFunc(Element.prototype, "getClientRects", function (target, self, args) {
@@ -21,7 +22,7 @@ export function cheat(scope, browser) {
             }
         }
         if (isZero) return rects
-        const noise = Utils.randomInt(factor, -999, 999) * 0.0001;
+        const noise = rand.int(-999, 999) * 0.0001;
         // self.style.transform = `scale(${1 + noise})`;
         if (self.style.position === 'absolute') {
             let number = (self.style.left.match(/\d+/g) || []).map(Number)[0] || 0;

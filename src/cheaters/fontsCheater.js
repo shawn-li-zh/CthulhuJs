@@ -246,8 +246,9 @@ function isFontLoaded(fontFamily) {
 export function cheat(scope, browser) {
     const factor = browser.factors.fonts
     if (!factor) return false;
+    let rand=new Utils.Random(factor)
     const HTMLElement = scope.HTMLElement;
-    const temp = Utils.randomInt(factor, 5, 20);
+    const temp = rand.int( 5, 20);
     let osName
     if (!browser.uaInfo) {
         let ua = scope.navigator.userAgent.toLowerCase();
@@ -288,8 +289,9 @@ export function cheat(scope, browser) {
             hashCache[family] = Utils.hashcode(family)
             hash = hashCache[family]
         }
+        let randT=new Utils.Random(factor + hash)
         // 没匹配到就随机成功和失败
-        return Utils.randomInt(factor + hash, 1, 4) === 1
+        return randT.int(1, 4) === 1
     }
 
     const curDefaultWidth = {}
@@ -314,7 +316,8 @@ export function cheat(scope, browser) {
                 let isFontLoaded = !Object.values(curDefaultWidth).includes(value);
                 if (isFontLoaded) return value
                 let hashcode = Math.abs(Utils.hashcode(fontFamily));
-                const noiseSize = Utils.randomInt(factor + hashcode, 1, 50) / 100;
+                let rand = new Utils.Random(factor+hashcode);
+                const noiseSize = rand.int(1, 50) / 100;
                 return value + noiseSize;
             }
             //返回缓存的默认字体宽度
@@ -332,7 +335,7 @@ export function cheat(scope, browser) {
             if ((originValue) % temp === 0) {
                 return originValue
             }
-            const noise = (Utils.randomNum(factor, 5000) - 2500) / 5000
+            const noise = (rand.int(0, 5000) - 2500) / 5000
             return originValue + noise;
         });
     }
@@ -344,7 +347,7 @@ export function cheat(scope, browser) {
             if (originValue % temp === 0) {
                 return originValue
             }
-            const noise = (Utils.randomNum(factor, 5000) - 2500) / 5000
+            const noise = (rand.int(0, 5000) - 2500) / 5000
             return originValue + noise;
         });
     }

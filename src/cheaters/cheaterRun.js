@@ -29,7 +29,6 @@ import {specialKeys} from "../const";
 const LOG = console.log
 
 function elseCheater(scope, browser) {
-
     //
     (browser.customVars || []).forEach(item => {
         let {path, value} = item

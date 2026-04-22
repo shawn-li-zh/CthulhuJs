@@ -81,17 +81,17 @@ const FRAG_COLOR_REGEX = /gl_FragColor\s*=\s*(.+);/;
 export function cheat(scope, browser) {
     const factor = browser.factors.webgl;
     const safeMode = browser.safeMode || 0;
-
+    let rand = new Utils.Random(factor);
     const max = 10000
-    let offset = Utils.randomInt(factor, -max, max) / (max * 10)
+    let offset = rand.int(-max, max) / (max * 10)
     const modifyVertexOffset = (source) => {
         if (!source || typeof source != 'string') return source
         return source.replace(/gl_Position\s*=/i, "gl_Position = " + offset + " + ")
     }
     let rgbOffsetFn = () => {
-        let r = Utils.randomInt(factor + 1, -50, 50) / 20,
-            g = Utils.randomInt(factor + 2, -50, 50) / 20,
-            b = Utils.randomInt(factor + 3, -50, 50) / 20;
+        let r = rand.int(-50, 50) / 20,
+            g = rand.int(-50, 50) / 20,
+            b = rand.int(-50, 50) / 20;
         return 'vec4(' + r + ',' + g + ',' + b + ',0)'
     }
     let rgbOffset = rgbOffsetFn()

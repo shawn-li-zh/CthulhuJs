@@ -1,3 +1,5 @@
+import utils from "./kits/utils";
+
 export const specialKeys = {
     native: '__nativeCheat__',
     remove: '__removeCheat__',
@@ -15,6 +17,14 @@ export const specialKeys = {
     SCOPE_CHEATER: 'SCOPE_CHEATER',
     CTHULHUJS_API: 'CTHULHUJS_API',
     BROWSER_GENERATOR: 'BROWSER_GENERATOR',
+}
+
+//随机生成key
+export function initKeys(seed = 0) {
+    for (let key of Object.keys(specialKeys)) {
+        specialKeys[key] = utils.fakeName(key, seed);
+    }
+    console.log(specialKeys)
 }
 
 export const brandMapCompany = {

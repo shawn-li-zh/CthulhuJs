@@ -45,10 +45,10 @@ export function cheat(scope, browser) {
     const noiseFactor = browser.screen.noise;
     let {width, height} = scope.screen;
     let fakeWidth = width, fakeHeight = height;
-
+    let rand = new Utils.Random(noiseFactor);
     //引发ps检测失败
     if (noiseFactor) {
-        const ratio = Utils.randomInt(noiseFactor, -50, 50) / 1000;
+        const ratio = rand.int(-50, 50) / 1000;
         // const noise = 0;
         fakeWidth = width * (1 + ratio) | 0;
         fakeHeight = height * (1 + ratio) | 0;

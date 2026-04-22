@@ -1,5 +1,5 @@
 import Utils from "./kits/utils";
-import {brandMapCompany, specialKeys} from "./const";
+import {brandMapCompany, initKeys, specialKeys} from "./const";
 
 const Date = self.Date;
 const LOG = console.log
@@ -17,6 +17,8 @@ function cache(fn) {
 }
 
 export function fill(browser) {
+    initKeys(browser.seed || 0);
+    let rand=new Utils.Random(browser.seed)
     if (browser.device?.dpr) {
         let dpr = browser.device.dpr.toFixed(2)
         if (window.devicePixelRatio.toFixed(2) === dpr) {
@@ -141,7 +143,7 @@ export function fill(browser) {
         if (uaInfo.cpu || uaInfo.os) {
             let osName = uaInfo.os?.name.toLowerCase() || "";
             if (osName.includes("win")) {
-                browser.arch = Utils.randomItem(browser.seed || 0, ["x86", 'x64'])
+                browser.arch = rand.item(["x86", 'x64'])
             } else {
                 browser.arch = (uaInfo.cpu || {}).architecture
             }
@@ -163,14 +165,15 @@ export function fill(browser) {
 }
 
 export function getBrowserFromEnv() {
+    initKeys(0)
     let scopeBrowser = self[specialKeys.SCOPE_BROWSER];
     if (scopeBrowser) {
         if (self.top === self || !self.top) LOG("browser from background")
         return scopeBrowser
     }
-    let item = sessionStorage.getItem(specialKeys.SCOPE_BROWSER);
-    if (!item) return undefined;
     try {
+        let item = sessionStorage.getItem(specialKeys.SCOPE_BROWSER);
+        if (!item) return undefined;
         scopeBrowser = JSON.parse(item)
         self[specialKeys.SCOPE_BROWSER] = scopeBrowser
         if (self.top === self || !self.top) LOG("browser from session")
