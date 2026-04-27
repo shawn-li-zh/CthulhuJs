@@ -1,7 +1,10 @@
 import {windowCheat, workerCheat} from "./cheaters/cheaterRun";
 import {fill, getBrowserFromEnv} from "./browserFill";
-import {specialKeys} from "./const";
-import {proxyFunc} from "./kits/proxy";
+import {initKeys, specialKeys} from "./const";
+import {initAttach, proxyFunc} from "./kits/proxy";
+
+initKeys(0);
+initAttach(self);
 // import "@babel/polyfill";
 (
     () => {

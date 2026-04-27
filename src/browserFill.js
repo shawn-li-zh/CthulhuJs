@@ -165,7 +165,6 @@ export function fill(browser) {
 }
 
 export function getBrowserFromEnv() {
-    initKeys(0)
     let scopeBrowser = self[specialKeys.SCOPE_BROWSER];
     if (scopeBrowser) {
         if (self.top === self || !self.top) LOG("browser from background")

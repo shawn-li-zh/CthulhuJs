@@ -63,11 +63,11 @@ function randomSwap(seed, array, options = {times: 10, unit: 2, loopTimes: 50, s
     if (array.length <= options.times * options.unit * 2) return;
     let seg = (array.length / (options.times * 2)) | 0//按次数分段 ，seg必须大于unit*2
     let segs = (seg / options.unit) | 0;
-    let rand=new Random(seed)
+    let rand = new Random(seed)
     let times = 0
     for (let j = 0; j < options.loopTimes; j++) {
         let s = j * options.times * 2
-        let i = rand.int( 0, segs)
+        let i = rand.int(0, segs)
         let start = s + i * options.unit * 2;
         if (swap(array, start, start + options.unit, options.unit, options.skips)) {
             times++;
@@ -82,8 +82,8 @@ function randomReverse(seed, array, step, skips = []) {
     let times = 0;
     let steps = (array.length / step) | 0
     let half = (step / 2) | 0;
-    let rand=new Random(seed)
-    let ratio = rand.int( 3, 13)
+    let rand = new Random(seed)
+    let ratio = rand.int(3, 13)
 
     for (let j = 0; j < steps; j++) {
         let base = j * step;
@@ -100,7 +100,7 @@ function randomReverse(seed, array, step, skips = []) {
                 times++;
             }
         }
-        j += rand.int( 1, 10)
+        j += rand.int(1, 10)
     }
     return times
 }
@@ -117,13 +117,13 @@ function randomReverse(seed, array, step, skips = []) {
 
 function randomNoise(seed, array, skips = [0]) {
     if (!array) return 0
-    let rand=new Random(seed)
-    let noise = rand.int( 1, 5000) / 1000;
+    let rand = new Random(seed)
+    let noise = rand.int(1, 5000) / 1000;
     let times = 0
     for (let j = 1; j < array.length - 1; j++) {
         if (skips.includes(array[j])) continue
         array[j] += noise;
-        j += rand.int( 1, (array.length / 300) | 0)
+        j += rand.int(1, (array.length / 300) | 0)
         times++;
     }
     return times
@@ -132,8 +132,8 @@ function randomNoise(seed, array, skips = [0]) {
 function randomPeek(seed, array, fn, step, loopTimes = 50) {
     if (!array) return
     step = step || Math.min((array.length / 500) | 0, 8) || 1;
-    let rand=new Random(seed)
-    let r = rand.int( 1, 100)
+    let rand = new Random(seed)
+    let r = rand.int(1, 100)
     let times = 0
     for (let j = 0; j < array.length;) {
         if (times >= loopTimes) break
@@ -243,9 +243,10 @@ function getGlobal() {
     }
 }
 
+
 class Random {
     constructor(seed = 0) {
-        this.rand = mulberry32(seed);
+        this.seed = seed
     }
 
     /**
@@ -255,15 +256,17 @@ class Random {
      * @returns {number}
      */
     int(min, max) {
-        let factor = this.rand() * (max - min) * 100
-        return Math.abs(factor | 0) % (max - min) + min;
-
+        this.seed = ( this.seed || 0) + 9
+        this.seed = Math.sin(this.seed*(max - min)) * 1000000
+        this.seed |= 0
+        return Math.abs(this.seed) % (max - min) + min;
     }
 
     item(arr = []) {
         let i = this.int(0, arr.length)
         return arr[i];
     }
+
     str(length = 16, characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789') {
         let result = '';
         const charactersLength = characters.length;
@@ -288,15 +291,19 @@ function mulberry32(a = 0) {
 
 
 let now = new Date();
-let ymd= now.getFullYear() + ":" + now.getMonth() + ":" + now.getDate();
+let ymd = now.getFullYear() + ":" + now.getMonth() + ":" + now.getDate();
+
 function fakeName(name = "", seed = 0) {
-    if (name === 'SCOPE_CHEATER' || name === 'SCOPE_BROWSER') {
+    if (name === 'SCOPE_CHEATER' || name === 'SCOPE_BROWSER'
+        || name === 'CTHULHUJS_API'
+        || name === 'attach'
+    ) {
         //按日期
-        seed =ymd
+        seed = ymd
     }
     if (!seed) return name;
     let hash = hashcode(name + seed);
-    let rand=new Random(hash);
+    let rand = new Random(hash);
     return rand.str(32)
 }
 

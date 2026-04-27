@@ -1,10 +1,13 @@
 import {workerCheat} from "./cheaters/cheaterRun";
 import {fill} from "./browserFill";
-import {specialKeys} from "./const";
+import {initKeys, specialKeys} from "./const";
+import {initAttach} from "./kits/proxy";
 // import "@babel/polyfill";
-
+initKeys(0);
+initAttach(self);
 (
     () => {
+
         let scopeBrowser = self[specialKeys.SCOPE_BROWSER];
         if (!scopeBrowser) {
             console.log("There is no injectable information on the current environment...")
