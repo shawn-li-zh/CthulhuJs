@@ -247,6 +247,7 @@ function getGlobal() {
 class Random {
     constructor(seed = 0) {
         this.seed = seed
+        this.rand = mulberry32(seed)
     }
 
     /**
@@ -256,11 +257,11 @@ class Random {
      * @returns {number}
      */
     int(min, max) {
-        this.seed = ( this.seed || 0) + 9
-        this.seed = Math.sin(this.seed*(max - min)) * 1000000
-        this.seed |= 0
-        return Math.abs(this.seed) % (max - min) + min;
+        const r = this.rand();
+        const v = r * (max - min) * 1000000
+        return Math.abs(v | 0) % (max - min) + min;
     }
+
 
     item(arr = []) {
         let i = this.int(0, arr.length)
