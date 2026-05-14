@@ -13,6 +13,8 @@ export function cheat(scope, browser) {
     proxyFunc(Element.prototype, "getClientRects", function (target, self, args) {
         let rects = functionCall(target, self, args);
         if (self[specialKeys.fake] || ['rect-known', 'rect-ghost', 'rects'].includes(self.className)) return rects
+        if (self.tagName === 'SVG') return rects
+        if ((self.className+"")?.includes("svg")) return rects
         let isZero = true
         for (let k in rects[0]) {
             if (k === 'toJSON') continue

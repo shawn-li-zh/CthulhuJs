@@ -15,10 +15,11 @@ export function fakeString(type = '', name) {
     }
 }
 
-let specialKeyValues = Object.values(specialKeys);
+
 const includesFn = Array.prototype.includes
 
 export function cheat(scope) {
+    let specialKeyValues = Object.values(specialKeys);
     const CObject = scope.Object;
     const Function = scope.Function;
     const CReflect = scope.Reflect
