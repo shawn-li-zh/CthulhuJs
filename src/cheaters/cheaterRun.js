@@ -15,67 +15,19 @@ import {cheat as audioCheater} from "./audioCheater";
 import {cheat as canvasCheater} from "./canvasCheater";
 import {cheat as dateCheater} from "./dateCheater";
 import {cheat as webrtcCheater} from "./webrtcCheater";
-import {cheat as webglCheater} from "./webglCheater";
+import {cheat as webglParamsCheater} from "./webglParamsCheater";
+import {cheat as webglRenderCheater} from "./webglRenderCheater";
 import {cheat as webgpuCheater} from "./webgpuCheater";
 import {cheat as screenCheater} from "./screenCheater";
 import {cheat as voiceCheater} from "./voiceCheater";
+import {cheat as envCheater} from "./envCheater";
 
 
 import {cheat as traceCheater} from "./traceCheater";
-import {functionCall, initAttach, proxyGetter, proxyValue} from "../kits/proxy";
-import Utils from "../kits/utils";
+import {initAttach} from "../kits/proxy";
 import {specialKeys} from "../const";
 
 const LOG = console.log
-
-function elseCheater(scope, browser) {
-    //
-    (browser.customVars || []).forEach(item => {
-        let {path, value} = item
-        let pathItems = path.split(".");
-        let key = pathItems.pop();
-        path = pathItems.join(".");
-
-        let target = Utils.getValue(scope, path);
-        if (!target) {
-            scope[specialKeys.attach].warns.push(`${path} is undefined`);
-            return
-        }
-        proxyValue(target, key, value);
-        console.info(`${scope.constructor.name.toUpperCase()} Path:${Utils.formatString(path, 50)} ---MODIFIED`)
-    });
-    (browser.customProtos || []).forEach(proto => {
-        let targetPath = proto.name
-        proto.properties.forEach(property => {
-            let key = property.key
-            let value = property.value
-            let type = property.type
-            switch (type) {
-                case 'string':
-                    value = value + ''
-                    break
-                case 'number':
-                    value = (+value)
-                    break
-                case 'boolean':
-                    value = (!!value)
-                    break
-                case 'json':
-                    value = JSON.parse(value)
-                    break
-                case 'undefined':
-                    value = undefined
-                    break
-            }
-            let target = Utils.getValue(scope, targetPath);
-            if (!target) return
-            proxyGetter(target.prototype, key, (target, self, args) => {
-                functionCall(target, self, args)
-                return value
-            })
-        })
-    })
-}
 
 let id = 0
 
@@ -106,17 +58,18 @@ export function windowCheat(scope, browser, source) {
         screenCheater,//ps pass
         mediaCheater,//ps pass
         humanLikeCheater,
-        // driverCheater,//ps pass ,microsoft detach
+        driverCheater,//ps pass ,microsoft detach
         clientRectCheater,//ps pass
         dateCheater,//ps pass 时区和语言跟网络匹配
         audioCheater,//ps pass
         canvasCheater,//ps pass
-        webglCheater,//ps pass
+        webglParamsCheater,//ps pass
+        webglRenderCheater,//ps pass
         fontsCheater,//ps pass
         webgpuCheater,//ps pass
         webrtcCheater,//ps pass
         voiceCheater,//ps pass
-        elseCheater,//ps pass
+        envCheater,//ps pass
         traceCheater//ps pass
     }
 
@@ -159,9 +112,10 @@ export function workerCheat(scope, browser, source) {
         featureCheater,
         dateCheater,
         webrtcCheater,
-        webglCheater,
+        webglParamsCheater,//ps pass
+        webglRenderCheater,//ps pass
         webgpuCheater,
-        elseCheater
+        envCheater,//ps pass
     }
     try {
 

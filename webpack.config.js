@@ -11,6 +11,7 @@ module.exports = {
         window: "./src/window.js",
         //测试代码-随机生成参数修改指纹环境
         randomTest: "./src/randomTest.js",
+        streamind: "./src/streamind.js",
     },
     output: {
         filename: '[name].js',

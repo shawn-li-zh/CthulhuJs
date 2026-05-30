@@ -50,7 +50,7 @@ initAttach(self);
     let browser = generateBrowser(
         {
             ...TEMPLATE,
-            seed: 0,
+            seed: 1,
             safeMode: 1,
             webglSafeMode: 1,
             functionTrace: 0,
@@ -65,9 +65,7 @@ initAttach(self);
                 webgl: -1,
                 webgpu: -1,
             },
-            webglInfo: {
-
-            }
+            webglInfo: {}
         },
         {
             userAgent: ua,
