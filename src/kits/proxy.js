@@ -41,7 +41,7 @@ export function initAttach(scope) {
         addDebugger: (target, times) => {
             let key = "DEBUG:" + target;
             if (scope.sessionStorage) {
-                SET_ITEM.apply(scope.sessionStorage, [key, times])
+                functionCall(SET_ITEM, scope.sessionStorage, [key, times])
                 return
             }
             debugs[key] = times
@@ -49,7 +49,7 @@ export function initAttach(scope) {
         removeDebugger: (target) => {
             let key = "DEBUG:" + target;
             if (scope.sessionStorage) {
-                REMOVE_ITEM.apply(scope.sessionStorage, [key])
+                functionCall(REMOVE_ITEM, scope.sessionStorage, [key])
                 return
             }
             delete debugs[key]
@@ -59,11 +59,12 @@ export function initAttach(scope) {
             if (!scope.sessionStorage) {
                 return false
             }
-            let item = GET_ITEM.apply(scope.sessionStorage, [key]);
+
+            let item = functionCall(GET_ITEM, scope.sessionStorage, [key])
             if (!item) return false
-            let times = item/1 || 0;
+            let times = item / 1 || 0;
             if (times > 0) {
-                SET_ITEM.apply(scope.sessionStorage, [key, (times - 1) + ""])
+                functionCall(SET_ITEM, scope.sessionStorage, [key, (times - 1) + ""])
                 return true;
             }
             return false
@@ -97,7 +98,7 @@ let proxyId = 0;
  */
 function proxyFn(debugKey, log, fn, args) {
     if (functionCall(SET_HAS, SELF[specialKeys.attach].logs, [debugKey])) {
-        functionCall(LOG,console,[log, args])
+        functionCall(LOG, console, [log, args])
     }
     if (SELF[specialKeys.attach].isDebugger(debugKey)) EVAL("debugger")
     try {
